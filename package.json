@@ -1,0 +1,27 @@
+{
+  "name": "clubhouse-metrics",
+  "version": "1.0.0",
+  "repository": "https://github.com/raphael-magalhaes/clubhouse-metrics",
+  "private": true,
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "jest",
+    "format": "prettier --write '**/*.js'"
+  },
+  "dependencies": {
+    "dotenv": "8.2.0",
+    "moment": "2.24.0",
+    "request": "2.88.0",
+    "request-promise-native": "^1.0.8"
+  },
+  "devDependencies": {
+    "jest": "24.9.0",
+    "prettier": "1.19.1"
+  },
+  "prettier": {
+    "printWidth": 160,
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true
+  }
+}
