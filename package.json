@@ -9,10 +9,11 @@
     "format": "prettier --write '**/*.js'"
   },
   "dependencies": {
+    "csv-stringify": "5.3.6",
     "dotenv": "8.2.0",
     "moment": "2.24.0",
     "request": "2.88.0",
-    "request-promise-native": "^1.0.8"
+    "request-promise-native": "1.0.8"
   },
   "devDependencies": {
     "jest": "24.9.0",
