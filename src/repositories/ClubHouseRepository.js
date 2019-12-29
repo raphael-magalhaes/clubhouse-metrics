@@ -1,4 +1,7 @@
 const http = require('../infrastructure/HTTP')
+const FileSystem = require('../infrastructure/FileSystem')
+
+const DEBUG_MODE_ENABLED = process.env.DEBUG_MODE_ENABLED === 'true'
 
 const CLUBHOUSE_API_TOKEN = process.env.CLUBHOUSE_API_TOKEN
 
@@ -85,12 +88,34 @@ const getStoryHistoryById = async (id, name) => {
   return await doCall(config)
 }
 
+const saveFile = (data, path) => {
+  if (DEBUG_MODE_ENABLED) FileSystem.saveAsJSON(data, path)
+}
+
+const saveProjects = projects => saveFile(projects, `debug/projects.json`)
+
+const saveWorkflows = workflows => saveFile(workflows, `debug/workflows.json`)
+
+const saveIterations = iterations => saveFile(iterations, `debug/iterations.json`)
+
+const saveAllStoriesByProject = (stories, projectId) => saveFile(stories, `debug/allStoriesOfProject${projectId}.json`)
+
+const saveEachStoryWithItsHistoryByProject = (story, projectId) => saveFile(story, `debug/stories/story${story.id}OfProject${projectId}.json`)
+
+const saveClubhouseData = clubhouseData => FileSystem.saveAsJSON(clubhouseData, `data/clubhouseData.json`)
+
 const ClubhouseRepository = {
   getProjects,
   getWorkflows,
   getIterations,
   getStoriesByProjectId,
-  getStoryHistoryById
+  getStoryHistoryById,
+  saveProjects,
+  saveWorkflows,
+  saveIterations,
+  saveAllStoriesByProject,
+  saveEachStoryWithItsHistoryByProject,
+  saveClubhouseData
 }
 
 module.exports = ClubhouseRepository
