@@ -1,0 +1,5 @@
+# Ignore everything in this directory, except .gitignore, README.md file and stories folder.
+*
+!.gitignore
+!README.md
+!stories
