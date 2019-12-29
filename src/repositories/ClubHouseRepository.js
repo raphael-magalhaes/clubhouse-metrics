@@ -100,7 +100,7 @@ const saveIterations = iterations => saveFile(iterations, `debug/iterations.json
 
 const saveAllStoriesByProject = (stories, projectId) => saveFile(stories, `debug/allStoriesOfProject${projectId}.json`)
 
-const saveEachStoryWithItsHistoryByProject = (story, projectId) => saveFile(story, `debug/stories/story${story.id}OfProject${projectId}.json`)
+const saveEachStoryWithItsHistoryByProject = (story, projectId) => saveFile(story, `debug/stories/Project${projectId}Story${story.id}.json`)
 
 const saveClubhouseData = clubhouseData => FileSystem.saveAsJSON(clubhouseData, `data/clubhouseData.json`)
 
