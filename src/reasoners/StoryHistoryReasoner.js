@@ -43,6 +43,7 @@ const getStateChanges = story => {
           iterationName,
           archived,
           completed,
+          storyId,
           storyName,
           actionType: actionEntry.action,
           stateName: workflowStateName,
@@ -71,7 +72,8 @@ const processStateChanges = stories => {
         storyLeadTime.iterationName = stateChangeEntry.iterationName
         storyLeadTime.archived = String(stateChangeEntry.archived)
         storyLeadTime.completed = String(stateChangeEntry.completed)
-        storyLeadTime.storyId = `${storyId} ${stateChangeEntry.storyName}`
+        storyLeadTime.storyId = stateChangeEntry.storyId
+        storyLeadTime.storyName = stateChangeEntry.storyName
         storyLeadTime[stateChangeEntry.stateName] =
           storyLeadTime[stateChangeEntry.stateName] != null ? storyLeadTime[stateChangeEntry.stateName] + hours : hours
       })
