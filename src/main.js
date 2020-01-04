@@ -1,13 +1,21 @@
 require('dotenv').config()
 
-const ClubHouseRepository = require('./repositories/ClubHouseRepository')
 const FileSystem = require('./infrastructure/FileSystem')
+const ClubhouseController = require('./controllers/ClubhouseController')
+const LeadTimeController = require('./controllers/LeadTimeController')
 
 const main = async () => {
-  const storyId = 9862
-  const result = await ClubHouseRepository.getStoryHistoryById(storyId)
+  const localClubhouseData = FileSystem.readFile('./data/clubhouseData.json')
+  let clubhouseData = null
 
-  FileSystem.save(result, `data/story-${storyId}-history.json`)
+  if (localClubhouseData) {
+    clubhouseData = localClubhouseData
+  } else {
+    const config = { onlyStoriesInAnIteration: false }
+    clubhouseData = await ClubhouseController.getClubhouseData(config)
+  }
+
+  LeadTimeController.getStoriesLeadTimeByStates(clubhouseData)
 }
 
 main()
