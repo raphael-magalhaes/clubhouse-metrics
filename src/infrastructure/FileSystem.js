@@ -1,6 +1,8 @@
 const fs = require('fs')
 const csvStringify = require('csv-stringify')
 
+const DEBUG_MODE_ENABLED = process.env.DEBUG_MODE_ENABLED === 'true'
+
 const FileSystem = {
   saveAsJSON: (data, path) => fs.writeFileSync(path, JSON.stringify(data, null, 4)),
   saveAsCSV: (data, path, config) => csvStringify(data, config, (error, output) => fs.writeFileSync(path, output)),
@@ -10,6 +12,9 @@ const FileSystem = {
     } catch (error) {
       return undefined
     }
+  },
+  debug: {
+    saveAsJSON: (data, path) => DEBUG_MODE_ENABLED && FileSystem.saveAsJSON(data, path)
   }
 }
 

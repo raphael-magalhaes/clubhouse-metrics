@@ -1,8 +1,6 @@
 const http = require('../infrastructure/HTTP')
 const FileSystem = require('../infrastructure/FileSystem')
 
-const DEBUG_MODE_ENABLED = process.env.DEBUG_MODE_ENABLED === 'true'
-
 const CLUBHOUSE_API_TOKEN = process.env.CLUBHOUSE_API_TOKEN
 
 const CLUBHOUSE_ORGANIZATION = process.env.CLUBHOUSE_ORGANIZATION
@@ -88,19 +86,15 @@ const getStoryHistoryById = async (id, name) => {
   return await doCall(config)
 }
 
-const saveFile = (data, path) => {
-  if (DEBUG_MODE_ENABLED) FileSystem.saveAsJSON(data, path)
-}
+const saveProjects = projects => FileSystem.debug.saveAsJSON(projects, `debug/projects.json`)
 
-const saveProjects = projects => saveFile(projects, `debug/projects.json`)
+const saveWorkflows = workflows => FileSystem.debug.saveAsJSON(workflows, `debug/workflows.json`)
 
-const saveWorkflows = workflows => saveFile(workflows, `debug/workflows.json`)
+const saveIterations = iterations => FileSystem.debug.saveAsJSON(iterations, `debug/iterations.json`)
 
-const saveIterations = iterations => saveFile(iterations, `debug/iterations.json`)
+const saveAllStoriesByProject = (stories, projectId) => FileSystem.debug.saveAsJSON(stories, `debug/allStoriesOfProject${projectId}.json`)
 
-const saveAllStoriesByProject = (stories, projectId) => saveFile(stories, `debug/allStoriesOfProject${projectId}.json`)
-
-const saveEachStoryWithItsHistoryByProject = (story, projectId) => saveFile(story, `debug/stories/Project${projectId}Story${story.id}.json`)
+const saveEachStoryWithItsHistoryByProject = (story, projectId) => FileSystem.debug.saveAsJSON(story, `debug/stories/project${projectId}Story${story.id}.json`)
 
 const saveClubhouseData = clubhouseData => FileSystem.saveAsJSON(clubhouseData, `data/clubhouseData.json`)
 
