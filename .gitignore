@@ -1,3 +1,4 @@
 .env
 reports
+.stryker-tmp
 node_modules

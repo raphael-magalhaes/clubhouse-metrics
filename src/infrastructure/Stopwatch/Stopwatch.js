@@ -1,7 +1,7 @@
 const timeReadings = {}
 
 const Stopwatch = id => {
-  if (!id) return
+  if (id == null) return
 
   if (timeReadings[id]) {
     const timePassedInSeconds = (Date.now() - timeReadings[id]) / 1000

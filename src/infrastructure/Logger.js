@@ -1,4 +1,4 @@
-const Stopwatch = require('./Stopwatch')
+const Stopwatch = require('../infrastructure').Stopwatch
 
 const LOGGING_ENABLED = process.env.LOGGING_ENABLED === 'true'
 
