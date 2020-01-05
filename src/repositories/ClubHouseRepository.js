@@ -1,4 +1,4 @@
-const http = require('../infrastructure/HTTP')
+const http = require('../infrastructure').HTTP
 const FileSystem = require('../infrastructure/FileSystem')
 
 const CLUBHOUSE_API_TOKEN = process.env.CLUBHOUSE_API_TOKEN
