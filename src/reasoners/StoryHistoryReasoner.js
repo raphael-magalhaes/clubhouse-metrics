@@ -73,7 +73,7 @@ const processStateChanges = stories => {
         storyLeadTime.archived = String(stateChangeEntry.archived)
         storyLeadTime.completed = String(stateChangeEntry.completed)
         storyLeadTime.storyId = stateChangeEntry.storyId
-        storyLeadTime.storyName = stateChangeEntry.storyName
+        storyLeadTime.storyName = `${stateChangeEntry.storyId} ${stateChangeEntry.storyName}`
         storyLeadTime[stateChangeEntry.stateName] =
           storyLeadTime[stateChangeEntry.stateName] != null ? storyLeadTime[stateChangeEntry.stateName] + hours : hours
       })
