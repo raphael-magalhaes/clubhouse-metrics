@@ -1,4 +1,4 @@
-const Logger = require('../infrastructure/Logger')
+const Logger = require('../infrastructure').Logger
 
 const ClubhouseRepository = require('../repositories/ClubhouseRepository')
 

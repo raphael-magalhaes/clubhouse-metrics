@@ -1,3 +1,3 @@
-const Stopwatch = require('./Stopwatch/Stopwatch')
+const Logger = require('./Logger/Logger')
 
-module.exports.Stopwatch = Stopwatch
+module.exports.Logger = Logger

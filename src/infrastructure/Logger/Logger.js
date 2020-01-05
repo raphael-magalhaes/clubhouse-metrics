@@ -1,9 +1,7 @@
-const Stopwatch = require('../infrastructure').Stopwatch
-
-const LOGGING_ENABLED = process.env.LOGGING_ENABLED === 'true'
+const Stopwatch = require('./Stopwatch/Stopwatch')
 
 const Logger = (entry, stopwatchId) => {
-  if (!LOGGING_ENABLED) return
+  if (process.env.LOGGING_ENABLED !== 'true') return
 
   const timePassed = Stopwatch(stopwatchId)
   if (timePassed) {

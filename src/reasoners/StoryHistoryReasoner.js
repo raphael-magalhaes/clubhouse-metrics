@@ -1,5 +1,5 @@
 const moment = require('moment')
-const Logger = require('../infrastructure/Logger')
+const Logger = require('../infrastructure').Logger
 
 const isWorkflowStateAction = actionEntry =>
   (actionEntry.entity_type === 'story' && actionEntry.action != null) ||
