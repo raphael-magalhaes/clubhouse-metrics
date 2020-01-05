@@ -1,4 +1,4 @@
-const FileSystem = require('../infrastructure/FileSystem')
+const FileSystem = require('../infrastructure').FileSystem
 const Logger = require('../infrastructure').Logger
 
 const saveStoriesLeadTimeByStateAsCSV = async data => {

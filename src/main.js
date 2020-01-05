@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const FileSystem = require('./infrastructure/FileSystem')
+const FileSystem = require('./infrastructure').FileSystem
 const ClubhouseController = require('./controllers/ClubhouseController')
 const LeadTimeController = require('./controllers/LeadTimeController')
 

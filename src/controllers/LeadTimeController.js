@@ -1,4 +1,4 @@
-const FileSystem = require('../infrastructure/FileSystem')
+const FileSystem = require('../infrastructure').FileSystem
 
 const StoryHistoryReasoner = require('../reasoners/StoryHistoryReasoner')
 const LeadTimeRepository = require('../repositories/LeadTimeRepository')
