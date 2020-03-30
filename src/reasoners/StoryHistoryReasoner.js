@@ -22,10 +22,25 @@ const getWorkflowName = (references = [], actionEntry) => {
 }
 
 const getStateChanges = story => {
-  const { projectName, iterationName, archived, completed, name: storyName, id: storyId, history } = story
+  const {
+    projectName,
+    iterationName,
+    archived,
+    completed,
+    name: storyName,
+    id: storyId,
+    history,
+    story_type: storyType,
+    blocker,
+    epic_id: epicId,
+    previous_iteration_ids: previousIterationIds,
+    estimate,
+    blocked,
+    deadline
+  } = story
   const processedData = []
 
-  if (!history) {
+  if (history == null) {
     Logger(
       `The story id ${storyId} "${storyName}" does not have a history so it will be skipped. That may was caused by fetching only stories that have an iteration id.`
     )
@@ -47,7 +62,14 @@ const getStateChanges = story => {
           storyName,
           actionType: actionEntry.action,
           stateName: workflowStateName,
-          changed_at: historyEntry.changed_at
+          changed_at: historyEntry.changed_at,
+          story_type: storyType,
+          blocker,
+          epicId,
+          previousIterationIds,
+          estimate,
+          blocked,
+          deadline
         })
       }
     })
@@ -76,6 +98,13 @@ const processStateChanges = stories => {
         storyLeadTime.storyName = `${stateChangeEntry.storyId} ${stateChangeEntry.storyName}`
         storyLeadTime[stateChangeEntry.stateName] =
           storyLeadTime[stateChangeEntry.stateName] != null ? storyLeadTime[stateChangeEntry.stateName] + hours : hours
+        storyLeadTime.storyType = stateChangeEntry.storyType
+        storyLeadTime.blocker = stateChangeEntry.blocker
+        storyLeadTime.epicId = stateChangeEntry.epicId
+        storyLeadTime.previousIterationIds = stateChangeEntry.previousIterationIds
+        storyLeadTime.estimate = stateChangeEntry.estimate
+        storyLeadTime.blocked = stateChangeEntry.blocked
+        storyLeadTime.deadline = stateChangeEntry.deadline
       })
 
       storiesLeadTime.push(storyLeadTime)
