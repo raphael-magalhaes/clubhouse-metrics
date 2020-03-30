@@ -2,14 +2,17 @@
 
 The goal of this project is to extract valuable metrics, some of them currently not available through Clubhouse UI or API. The motivation to start this project was not being able to programmatically calculate individual story workflow state lead time, in other words, how much time each story card spent in each column.
 
+Currently this project only fetch and parse the data from Clubhouse.
+
 ## Getting Started
 
 1. Clone the project
-2. Run `yarn` on the root folder to install dependencies
+2. Run `yarn install` on the root folder to install dependencies
 3. Make a copy of `.env-example` and rename it to `.env`
-4. Populate your `.env` file ([how to](#how-to-populate-your-.env))
+4. Populate your `.env` file ([How to populate your .env](#how-to-populate-your-env))
 5. Run `yarn start`
-6. The retrieved data will be in the `data` folder on the project's root folder
+6. The retrieved raw data will be in the `clubhouseData.json` file inside the `data` folder
+7. The processed data will be in the `output.csv` file inside the `data` folder, this is the file that can be analyzed and used to extract more metrics
 
 ### How to populate your .env
 
@@ -17,7 +20,7 @@ If you do not have the `.env` file yet, please refer to [Getting Started step #3
 
 The `.env` have two logical sections inside it, the first one is just the token to access the exposed [Clubhouse REST API](https://clubhouse.io/api/rest/v3/#Introduction) and the later refers to impersonating a valid user in order to collect data that is not exposed through the [Clubhouse REST API](https://clubhouse.io/api/rest/v3/#Introduction).
 
-[Create an API Token](https://app.clubhouse.io/beacon-works/settings/account/api-tokens) and add the token to `CLUBHOUSE_API_TOKEN` in your `.env` file.
+Follow the [Generating a Clubhouse API Token](https://help.clubhouse.io/hc/en-us/articles/205701199-Clubhouse-API-Tokens) and add the token to `CLUBHOUSE_API_TOKEN` in your `.env` file.
 
 > Tip: The token will be displayed only one time, so be sure to store it in a safe place, however you can always delete the lost token and generate a new one.
 

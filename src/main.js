@@ -5,11 +5,9 @@ const ClubhouseController = require('./controllers/ClubhouseController')
 const LeadTimeController = require('./controllers/LeadTimeController')
 
 const main = async () => {
-  const localClubhouseData = FileSystem.readFile('./data/clubhouseData.json')
   let clubhouseData = null
-
-  if (localClubhouseData) {
-    clubhouseData = localClubhouseData
+  if (process.env.USE_LOCAL_CLUBHOUSE_DATA === 'true') {
+    clubhouseData = FileSystem.readFile('./data/clubhouseData.json')
   } else {
     const config = { onlyStoriesInAnIteration: false }
     clubhouseData = await ClubhouseController.getClubhouseData(config)
